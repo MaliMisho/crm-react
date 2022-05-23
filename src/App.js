@@ -1,25 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
+import ContactsList from "./components/ContactsList";
+import Contact from "./components/Contact";
+import CreateContact from "./components/CreateContact";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [showContact, setShowContact] = useState(false);
+  const [showAddContact, setShowAddContact] = useState(false);
+  const [contact, setContact] = useState({});
+  const [refresh, setRefresh] = useState(true);
+
+  useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        setShowContact(false);
+      }
+    });
+  }, []);
+
+  const closeModal = () => {
+    setShowContact(false);
+    setShowAddContact(false);
+  };
+
+  const openContact = (contactToOpen, event) => {
+    setContact(contactToOpen);
+    setShowContact(true);
+  };
+
+  const createContact = () => {
+    setShowAddContact(true);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Welcome to Veliki CRM
+      {showContact && (
+        <Contact
+          closeModal={closeModal}
+          contactInfo={contact}
+          refresh={() => {
+            setRefresh(false);
+            setRefresh(true);
+          }}
+        />
+      )}
+      {showAddContact && (
+        <CreateContact
+          closeModal={closeModal}
+          refresh={() => {
+            setRefresh(false);
+            setRefresh(true);
+          }}
+        />
+      )}
+      <div
+      //   className={classes.btn}
+      >
+        <Button onClick={createContact} variant="contained" sx={{ m: 2 }}>
+          Add Contact
+        </Button>
+      </div>
+      {refresh && <ContactsList openContact={openContact} />}
     </div>
   );
-}
+};
 
 export default App;
