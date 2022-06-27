@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import ContactsList from "./components/ContactsList";
 import Contact from "./components/Contact";
+import ContactsList from "./components/ContactsList";
 import CreateContact from "./components/CreateContact";
 import "./App.css";
 
@@ -24,7 +24,7 @@ const App = () => {
     setShowAddContact(false);
   };
 
-  const openContact = (contactToOpen, event) => {
+  const openContact = (contactToOpen: any, event: any) => {
     setContact(contactToOpen);
     setShowContact(true);
   };

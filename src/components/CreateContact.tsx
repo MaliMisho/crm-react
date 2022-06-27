@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import CloseIcon from "@mui/icons-material/Close";
 
-const CreateContact = (props) => {
+const CreateContact = (props: any) => {
   const [enteredCompanyName, setEnteredCompanyName] = useState("");
   const [enteredFirstName, setEnteredFirstName] = useState("");
   const [enteredLastName, setEnteredLastName] = useState("");
@@ -26,7 +26,7 @@ const CreateContact = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: any) => {
     event.preventDefault();
     fetch(`/api/create`, {
       method: "POST",

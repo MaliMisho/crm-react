@@ -1,7 +1,8 @@
+import React from 'react'
 import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 
-const ContactsList = (props) => {
+const ContactsList = (props: any) => {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
@@ -9,9 +10,9 @@ const ContactsList = (props) => {
   }, []);
 
   const fetchContactsHandler = async () => {
-    const response = await fetch(`/api/findall`);
-    const data = await response.json();
-    const rows = [];
+    const response: any = await fetch(`/api/findall`);
+    const data: any = await response.json();
+    const rows: any = [];
 
     Object.keys(data).forEach((contact) => {
       const {
@@ -60,7 +61,7 @@ const ContactsList = (props) => {
     { field: "initial_contact", headerName: "Initial Contact", width: 200 },
   ];
 
-  const formatDate = (date) => {
+  const formatDate = (date: any) => {
     if (date !== null) {
       const t = date.slice(0, 19).replace("T", " ").split(/[- :]/);
       const jsDate = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5]));

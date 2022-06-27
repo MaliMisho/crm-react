@@ -19,7 +19,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import Typography from "@mui/material/Typography";
 
-const Contact = (props) => {
+const Contact = (props: any) => {
   const [notes, setNotes] = useState(props.contactInfo.notes);
   const [showSave, setShowSave] = useState(false);
   const [value, setValue] = useState(null);
@@ -40,7 +40,7 @@ const Contact = (props) => {
     });
   };
 
-  const updateDate = (contactDate) => {
+  const updateDate = (contactDate: any) => {
     fetch(`/api/updatedate`, {
       method: "POST",
       headers: {
@@ -203,7 +203,7 @@ const Contact = (props) => {
           >
             <Button
               onClick={saveInfo}
-              variant="disabled"
+              disabled
               size="small"
               endIcon={<SaveOutlinedIcon />}
               sx={{ mb: 2 }}
